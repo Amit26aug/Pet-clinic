@@ -4,14 +4,8 @@ import com.august.mypetclinic.model.Owner;
 
 import java.util.Set;
 
-public interface OwnerService {
-
-    Owner findById(Long id);
-
-    void save(Owner owner);
+public interface OwnerService extends CrudRepository<Owner, Long> {
 
     Owner findByLastName(String lastName);
-
-    Set<Owner> findAll();
 
 }

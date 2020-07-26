@@ -4,12 +4,6 @@ import com.august.mypetclinic.model.Vet;
 
 import java.util.Set;
 
-public interface VetService {
-
-    Vet getById(Long id);
-
-    Set<Vet> findAll();
-
-    void save(Vet vet);
+public interface VetService extends CrudRepository<Vet, Long> {
 
 }
