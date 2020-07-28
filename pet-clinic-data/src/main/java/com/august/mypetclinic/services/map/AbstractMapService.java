@@ -1,16 +1,21 @@
 package com.august.mypetclinic.services.map;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import com.august.mypetclinic.model.BaseEntity;
 
-public abstract class AbstractMapService<T, ID> {
+import java.util.*;
 
-    protected Map<ID, T> map = new HashMap<>();
+public abstract class AbstractMapService<T extends BaseEntity, ID extends Long> {
 
-    T save(ID id, T entity) {
-        map.put(id, entity);
+    protected Map<Long, T> map = new HashMap<>();
+
+    T save(T entity) {
+        if (entity == null) {
+            throw new RuntimeException("Cannot save an null entity.");
+        }
+        if (entity.getId() == null) {
+            entity.setId(getNextId());
+        }
+        map.put(entity.getId(), entity);
         return entity;
     }
 
@@ -28,5 +33,9 @@ public abstract class AbstractMapService<T, ID> {
 
     void delete(T entity) {
         map.entrySet().removeIf(entry -> entry.getValue().equals(entity));
+    }
+
+    Long getNextId() {
+        return map.isEmpty() ? 1L : Collections.max(map.keySet()) + 1;
     }
 }
