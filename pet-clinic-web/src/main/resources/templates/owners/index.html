@@ -10,14 +10,18 @@
         <h2 th:text="'Pet clinic owners list'">Owners page!</h2>
 
         <table class="table table-bordered">
+            <thead>
             <tr>
                 <th>ID</th>
                 <th>Name</th>
             </tr>
+            </thead>
+            <tbody>
             <tr th:each="owner: ${owners}">
                 <td th:text="${owner.id}">ID</td>
                 <td th:text="${owner.firstName + ' ' + owner.lastName}">Name</td>
             </tr>
+            </tbody>
         </table>
     </div>
 
