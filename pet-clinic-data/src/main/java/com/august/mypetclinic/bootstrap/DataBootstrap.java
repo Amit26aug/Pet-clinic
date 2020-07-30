@@ -25,12 +25,10 @@ public class DataBootstrap implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         Owner peterParker = new Owner();
-        peterParker.setId(1L);
         peterParker.setFirstName("Peter");
         peterParker.setLastName("Parker");
 
         Owner johnWick = new Owner();
-        johnWick.setId(2L);
         johnWick.setFirstName("John");
         johnWick.setLastName("Wick");
 
@@ -38,7 +36,6 @@ public class DataBootstrap implements CommandLineRunner {
         ownerService.save(johnWick);
 
         Vet stephenStrange = new Vet();
-        stephenStrange.setId(3L);
         stephenStrange.setFirstName("Stephen");
         stephenStrange.setLastName("Strange");
 
