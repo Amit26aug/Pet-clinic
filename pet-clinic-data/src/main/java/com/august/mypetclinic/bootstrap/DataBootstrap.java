@@ -1,11 +1,9 @@
 package com.august.mypetclinic.bootstrap;
 
-import com.august.mypetclinic.model.Owner;
-import com.august.mypetclinic.model.Pet;
-import com.august.mypetclinic.model.PetType;
-import com.august.mypetclinic.model.Vet;
+import com.august.mypetclinic.model.*;
 import com.august.mypetclinic.services.OwnerService;
 import com.august.mypetclinic.services.PetTypeService;
+import com.august.mypetclinic.services.SpecialtyService;
 import com.august.mypetclinic.services.VetService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
@@ -20,11 +18,14 @@ public class DataBootstrap implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
     private final PetTypeService petTypeService;
+    private final SpecialtyService specialtyService;
 
-    public DataBootstrap(OwnerService ownerService, VetService vetService, PetTypeService petTypeService) {
+    public DataBootstrap(OwnerService ownerService, VetService vetService,
+                         PetTypeService petTypeService, SpecialtyService specialtyService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
+        this.specialtyService = specialtyService;
     }
 
     @Override
@@ -70,9 +71,19 @@ public class DataBootstrap implements CommandLineRunner {
         ownerService.save(peterParker);
         ownerService.save(johnWick);
 
+        Specialty surgery = new Specialty();
+        surgery.setDescription("Surgery");
+        Specialty savedSurgery = specialtyService.save(surgery);
+
+        Specialty radiology = new Specialty();
+        radiology.setDescription("Radiology");
+        Specialty savedRadiology = specialtyService.save(radiology);
+
         Vet stephenStrange = new Vet();
         stephenStrange.setFirstName("Stephen");
         stephenStrange.setLastName("Strange");
+        stephenStrange.getSpecialties().add(savedSurgery);
+        stephenStrange.getSpecialties().add(savedRadiology);
 
         vetService.save(stephenStrange);
 
