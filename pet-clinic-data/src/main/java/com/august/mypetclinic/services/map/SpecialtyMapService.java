@@ -5,7 +5,7 @@ import com.august.mypetclinic.services.SpecialtyService;
 
 import java.util.Set;
 
-public class SpecialtyServiceImpl extends AbstractMapService<Specialty, Long> implements SpecialtyService {
+public class SpecialtyMapService extends AbstractMapService<Specialty, Long> implements SpecialtyService {
     @Override
     public Specialty save(Specialty specialty) {
         return super.save(specialty);
