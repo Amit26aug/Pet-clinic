@@ -2,13 +2,13 @@ package com.august.mypetclinic.services;
 
 import java.util.Set;
 
-public interface CrudRepository<T, ID> {
+public interface CrudService<T, ID> {
 
     T save(T entity);
 
     T findById(ID id);
 
-    Set<T> finAll();
+    Set<T> findAll();
 
     void deleteById(ID id);
 

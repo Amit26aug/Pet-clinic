@@ -20,7 +20,7 @@ public class PetTypeServiceMap extends AbstractMapService<PetType, Long> impleme
     }
 
     @Override
-    public Set<PetType> finAll() {
+    public Set<PetType> findAll() {
         return super.findAll();
     }
 
