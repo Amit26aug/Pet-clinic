@@ -1,5 +1,6 @@
 package com.august.mypetclinic.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -16,7 +17,7 @@ public class Owner extends Person {
 
     private String telephone;
 
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private Set<Pet> pets = new HashSet<>();
 
     public String getAddress() {
