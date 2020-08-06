@@ -1,10 +1,7 @@
 package com.august.mypetclinic.bootstrap;
 
 import com.august.mypetclinic.model.*;
-import com.august.mypetclinic.services.OwnerService;
-import com.august.mypetclinic.services.PetTypeService;
-import com.august.mypetclinic.services.SpecialtyService;
-import com.august.mypetclinic.services.VetService;
+import com.august.mypetclinic.services.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -19,18 +16,27 @@ public class DataBootstrap implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialtyService specialtyService;
+    private final VisitService visitService;
 
     public DataBootstrap(OwnerService ownerService, VetService vetService,
-                         PetTypeService petTypeService, SpecialtyService specialtyService) {
+                         PetTypeService petTypeService, SpecialtyService specialtyService,
+                         VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialtyService = specialtyService;
+        this.visitService = visitService;
     }
 
     @Override
     public void run(String... args) throws Exception {
 
+        loadData();
+
+        log.info("Vets and Owners saved!");
+    }
+
+    private void loadData() {
         PetType petTypeSpider = new PetType();
         petTypeSpider.setName("Spider");
         PetType savedPetTypeSpider = petTypeService.save(petTypeSpider);
@@ -71,6 +77,12 @@ public class DataBootstrap implements CommandLineRunner {
         ownerService.save(peterParker);
         ownerService.save(johnWick);
 
+        Visit visit = new Visit();
+        visit.setDate(LocalDate.now());
+        visit.setDescription("Nothing much");
+        visit.setPet(johnWicksDog);
+        visitService.save(visit);
+
         Specialty surgery = new Specialty();
         surgery.setDescription("Surgery");
         Specialty savedSurgery = specialtyService.save(surgery);
@@ -86,8 +98,6 @@ public class DataBootstrap implements CommandLineRunner {
         stephenStrange.getSpecialties().add(savedRadiology);
 
         vetService.save(stephenStrange);
-
-        log.info("Vets and Owners saved!");
     }
 
 }
