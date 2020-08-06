@@ -3,10 +3,14 @@ package com.august.mypetclinic.services.jpa;
 import com.august.mypetclinic.model.Visit;
 import com.august.mypetclinic.repositories.VisitRepository;
 import com.august.mypetclinic.services.VisitService;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Service
+@Profile("jpa")
 public class VisitServiceJpa implements VisitService {
 
     private final VisitRepository visitRepository;
