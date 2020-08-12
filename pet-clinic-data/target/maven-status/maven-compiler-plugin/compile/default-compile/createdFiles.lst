@@ -1,0 +1,15 @@
+com\august\mypetclinic\model\Vet.class
+com\august\mypetclinic\bootstrap\DataBootstrap.class
+com\august\mypetclinic\model\BaseEntity.class
+com\august\mypetclinic\services\PetService.class
+com\august\mypetclinic\services\map\VetServiceMap.class
+com\august\mypetclinic\services\map\AbstractMapService.class
+com\august\mypetclinic\services\map\PetServiceMap.class
+com\august\mypetclinic\model\Pet.class
+com\august\mypetclinic\services\CrudRepository.class
+com\august\mypetclinic\services\map\OwnerServiceMap.class
+com\august\mypetclinic\services\OwnerService.class
+com\august\mypetclinic\model\Person.class
+com\august\mypetclinic\model\PetType.class
+com\august\mypetclinic\services\VetService.class
+com\august\mypetclinic\model\Owner.class
